@@ -1,0 +1,16 @@
+{
+    "name": "gen/api",
+    "description": "Genosha API REST",
+    "autoload": {
+        "psr-4": {
+            "Gen\\Api\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juan Iriart",
+            "email": "juan.e@genosha.com.ar"
+        }
+    ],
+    "require": {}
+}
