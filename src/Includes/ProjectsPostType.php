@@ -7,6 +7,7 @@ use Gen\Api\Interfaces\IPostType;
 class ProjectsPostType implements IPostType
 {
     private static $init;
+    public $post_type = 'projects';
     public static function init()
     {
         if(is_null(self::$init)) {
@@ -66,10 +67,10 @@ class ProjectsPostType implements IPostType
             'map_meta_cap' => true,
             'hierarchical' => false,
             'can_export' => false,
-            'rewrite' => ['slug' => 'projects', 'with_front' => true],
+            'rewrite' => ['slug' => $this->post_type, 'with_front' => true],
             'query_var' => true,
             'menu_icon' => 'dashicons-art',
-            'supports' => ['title', 'editor', 'excerpt', 'custom-fields'],
+            'supports' => ['title', 'editor'],
             'show_in_graphql' => false,
         ];
 
@@ -78,5 +79,12 @@ class ProjectsPostType implements IPostType
 
     public function taxonomies()
     {
+    }
+
+    public function gutenber($use_gutenberg, $post){
+        if( $post->post_type === $this->post_type ) {
+            $use_gutenberg = false;
+        }
+        return $use_gutenberg;
     }
 }

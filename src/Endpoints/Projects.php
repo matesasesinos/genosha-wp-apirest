@@ -30,6 +30,27 @@ class Projects
 
     public function get_projects(\WP_REST_Request $r)
     {
-        return wp_send_json_success( 'Hellooo' );
+        $args = [
+            'post_type' => 'projects',
+            'post_status' => 'publish',
+            'numberposts' => -1
+        ];
+
+        $posts = get_posts($args);
+
+        if(!$posts) {
+            return wp_send_json_error('No projects found', 404);
+        }
+
+        $projects = [];
+        foreach($posts as $project) {
+            $data = [
+                'title' => $project->post_title,
+                'content' => $project->post_content
+            ];
+            array_push($projects,$data);
+        }
+
+        return wp_send_json_success($projects);
     }
 }
