@@ -27,7 +27,7 @@ if (!in_array('polylang/polylang.php', apply_filters('active_plugins', get_optio
 define('GENOSHA_API_VERSION', '3.0.1');
 define('GENOSHA_API_NAMESPACE', 'genosha/v3');
 define('API_GET', \WP_REST_Server::READABLE);
-define('GENOSHA_API_ENVIROMENT', api_get_enviroment() ? api_get_enviroment() : 'dev');
+define('GENOSHA_API_ENVIROMENT', function_exists('api_get_enviroment') && api_get_enviroment() ? api_get_enviroment() : 'dev');
 define('GENOSHA_ADMIN_ASSETS_IMAGES', plugin_dir_url(__FILE__) . '/src/assets/images');
 define('GENOSHA_ADMIN_ASSETS_CSS', plugin_dir_url(__FILE__) . '/src/assets/css');
 define('GENOSHA_ADMIN_ASSETS_JS', plugin_dir_url(__FILE__) . '/src/assets/js');
