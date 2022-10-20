@@ -30,10 +30,12 @@ class Projects
 
     public function get_projects(\WP_REST_Request $r)
     {
+        $lang = $r->get_param('lang') ? $r->get_param('lang') : 'es';
         $args = [
             'post_type' => 'projects',
             'post_status' => 'publish',
-            'numberposts' => -1
+            'numberposts' => -1,
+            'lang' => $lang
         ];
 
         $posts = get_posts($args);

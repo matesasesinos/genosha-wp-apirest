@@ -4,7 +4,10 @@
     "autoload": {
         "psr-4": {
             "Gen\\Api\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers/helpers.php"
+        ]
     },
     "authors": [
         {

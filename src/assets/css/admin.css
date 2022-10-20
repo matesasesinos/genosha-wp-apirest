@@ -1,0 +1,24 @@
+.api-help-card {
+  border-radius: 10px;
+  border: 1px solid #dcdcde;
+  padding: 1% 2%;
+  margin-bottom: 1%;
+}
+.api-help-title {
+  cursor: pointer;
+}
+.api-help-title:hover {
+  color: rgb(29 35 39 / 58%);
+}
+.api-help-content {
+  display: none;
+}
+div#api-auth {
+    background: aliceblue;
+    padding: .5% 1.5%;
+    border-radius: 10px;
+    display: none;
+}
+#api-key-generate{
+    font-weight: bold;
+}
