@@ -2,7 +2,7 @@
 
 namespace Gen\Api\Admin;
 
-class HelpOptions implements \Gen\Api\Interfaces\IMenuOPtions
+class HelpOptions
 {
     private static $init;
     public static function init()
