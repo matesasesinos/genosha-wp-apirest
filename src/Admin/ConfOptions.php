@@ -2,7 +2,7 @@
 
 namespace Gen\Api\Admin;
 
-class ConfOptions implements \Gen\Api\Interfaces\IMenuOPtions
+class ConfOptions
 {
     private static $init;
     public static function init()
