@@ -4,6 +4,7 @@ namespace Gen\Api\Admin;
 
 use Gen\Api\Admin\ConfOptions;
 use Gen\Api\Admin\HelpOptions;
+use Gen\Api\Admin\Metaboxes;
 
 class AdminInit
 {
@@ -28,5 +29,6 @@ class AdminInit
     {
         ConfOptions::init();
         HelpOptions::init();
+        Metaboxes::init();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Gen\Api\Endpoints;
 
+use Gen\Api\Repositories\PostRepository as Repo;
+
 class Projects
 {
     private static $init;
@@ -38,26 +40,10 @@ class Projects
             'lang' => $lang
         ];
 
-        $posts = get_posts($args);
+        $projects = Repo::get_all_posts($args, 'tags', 'tags_projects', '_genosha_project_content');
 
-        if (!$posts) {
+        if (!$projects) {
             return wp_send_json_error('No projects found', 404);
-        }
-
-        $projects = [];
-        foreach ($posts as $project) {
-            $data = [
-                'title' => $project->post_title,
-                'content' => $project->post_content,
-            ];
-            $data['tags'] = [];
-            foreach (get_the_terms($project->ID, 'tags_projects') as $tag) {
-                $t = [
-                    $tag->name
-                ];
-                array_push($data['tags'], $tag->name);
-            }
-            array_push($projects, $data);
         }
 
         return wp_send_json_success($projects);

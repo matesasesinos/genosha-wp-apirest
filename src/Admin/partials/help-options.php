@@ -1,5 +1,6 @@
 <div class="wrap">
     <h1 style="margin-bottom:1%">Ayuda</h1>
+    <p>Nota Importante: en <code>wp-config.php</code> debe estar definida la constante <code>define('ALLOW_UNFILTERED_UPLOADS', true);</code> o no se podrán subir algunos tipos de archivos.</p>
     <div class="api-help-card">
         <h2 class="api-help-title">1 - Polylang</h2>
         <div class="api-help-content">

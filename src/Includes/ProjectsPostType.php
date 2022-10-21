@@ -69,7 +69,7 @@ class ProjectsPostType
             'rewrite' => ['slug' => $this->post_type, 'with_front' => true],
             'query_var' => true,
             'menu_icon' => 'dashicons-art',
-            'supports' => ['title', 'editor'],
+            'supports' => ['title'],
             'show_in_graphql' => false,
         ];
 
@@ -107,7 +107,7 @@ class ProjectsPostType
         ];
         register_taxonomy('tags_projects', ['projects'], $args);
     }
-
+    
     public function gutenber($use_gutenberg, $post)
     {
         if ($post->post_type === $this->post_type) {
