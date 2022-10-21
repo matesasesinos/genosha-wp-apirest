@@ -36,6 +36,7 @@ use Gen\Api\TestApi;
 use Gen\Api\Includes\IncludesInit;
 use Gen\Api\Endpoints\EndpointsInit;
 use Gen\Api\Admin\AdminInit;
+use Gen\Api\Utils\Utils;
 
 class GenoshaApiRestInit
 {
@@ -87,6 +88,7 @@ class GenoshaApiRestInit
         IncludesInit::init();
         EndpointsInit::init();
         AdminInit::init();
+        Utils::init();
     }
 }
 

@@ -22,3 +22,17 @@ div#api-auth {
 #api-key-generate{
     font-weight: bold;
 }
+.genosha-meta-fields {
+  display: flex;
+  flex-direction: column;
+  padding-top: .5%;
+}
+.genosha-meta-fields label{
+  display: block;
+  padding-bottom: .5%;
+  font-weight: bold;
+}
+.genosha-meta-upload {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}

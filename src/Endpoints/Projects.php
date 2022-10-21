@@ -2,12 +2,14 @@
 
 namespace Gen\Api\Endpoints;
 
+use Gen\Api\Repositories\PostRepository as Repo;
+
 class Projects
 {
     private static $init;
     public static function init()
     {
-        if(is_null(self::$init)) {
+        if (is_null(self::$init)) {
             self::$init = new self();
         }
 
@@ -16,14 +18,14 @@ class Projects
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this,'routes']);
+        add_action('rest_api_init', [$this, 'routes']);
     }
 
     public function routes()
     {
-        register_rest_route( GENOSHA_API_NAMESPACE, '/projects', [
+        register_rest_route(GENOSHA_API_NAMESPACE, '/projects', [
             'methods' => API_GET,
-            'callback' => [$this,'get_projects'],
+            'callback' => [$this, 'get_projects'],
             'permission_callback' => '__return_true'
         ]);
     }
@@ -38,19 +40,10 @@ class Projects
             'lang' => $lang
         ];
 
-        $posts = get_posts($args);
+        $projects = Repo::get_all_posts($args, 'tags', 'tags_projects', '_genosha_project_content');
 
-        if(!$posts) {
+        if (!$projects) {
             return wp_send_json_error('No projects found', 404);
-        }
-
-        $projects = [];
-        foreach($posts as $project) {
-            $data = [
-                'title' => $project->post_title,
-                'content' => $project->post_content
-            ];
-            array_push($projects,$data);
         }
 
         return wp_send_json_success($projects);
