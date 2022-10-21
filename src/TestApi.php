@@ -19,7 +19,9 @@ class TestApi
         register_rest_route(GENOSHA_API_NAMESPACE, '/test', [
             'methods' => 'GET',
             'callback' => [__CLASS__,'test'],
-            'permission_callback' => '__return_true'
+            'permission_callback' => function() {
+                if(is_user_logged_in(  )) return true;
+            }
         ]);
     }
 

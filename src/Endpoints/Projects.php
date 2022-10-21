@@ -4,7 +4,7 @@ namespace Gen\Api\Endpoints;
 
 use Gen\Api\Repositories\PostRepository as Repo;
 
-class Projects
+class Projects extends EndpointsInit
 {
     private static $init;
     public static function init()
@@ -26,7 +26,7 @@ class Projects
         register_rest_route(GENOSHA_API_NAMESPACE, '/projects', [
             'methods' => API_GET,
             'callback' => [$this, 'get_projects'],
-            'permission_callback' => '__return_true'
+            'permission_callback' => [$this, 'endpoints_permissions']
         ]);
     }
 
