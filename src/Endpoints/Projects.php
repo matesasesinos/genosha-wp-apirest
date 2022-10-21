@@ -7,7 +7,7 @@ class Projects
     private static $init;
     public static function init()
     {
-        if(is_null(self::$init)) {
+        if (is_null(self::$init)) {
             self::$init = new self();
         }
 
@@ -16,14 +16,14 @@ class Projects
 
     public function __construct()
     {
-        add_action('rest_api_init', [$this,'routes']);
+        add_action('rest_api_init', [$this, 'routes']);
     }
 
     public function routes()
     {
-        register_rest_route( GENOSHA_API_NAMESPACE, '/projects', [
+        register_rest_route(GENOSHA_API_NAMESPACE, '/projects', [
             'methods' => API_GET,
-            'callback' => [$this,'get_projects'],
+            'callback' => [$this, 'get_projects'],
             'permission_callback' => '__return_true'
         ]);
     }
@@ -40,17 +40,24 @@ class Projects
 
         $posts = get_posts($args);
 
-        if(!$posts) {
+        if (!$posts) {
             return wp_send_json_error('No projects found', 404);
         }
 
         $projects = [];
-        foreach($posts as $project) {
+        foreach ($posts as $project) {
             $data = [
                 'title' => $project->post_title,
-                'content' => $project->post_content
+                'content' => $project->post_content,
             ];
-            array_push($projects,$data);
+            $data['tags'] = [];
+            foreach (get_the_terms($project->ID, 'tags_projects') as $tag) {
+                $t = [
+                    $tag->name
+                ];
+                array_push($data['tags'], $tag->name);
+            }
+            array_push($projects, $data);
         }
 
         return wp_send_json_success($projects);

@@ -2,15 +2,13 @@
 
 namespace Gen\Api\Includes;
 
-use Gen\Api\Interfaces\IPostType;
-
-class ProjectsPostType implements IPostType
+class ProjectsPostType
 {
     private static $init;
     public $post_type = 'projects';
     public static function init()
     {
-        if(is_null(self::$init)) {
+        if (is_null(self::$init)) {
             self::$init = new self();
         }
 
@@ -20,6 +18,7 @@ class ProjectsPostType implements IPostType
     public function __construct()
     {
         add_action('init', [$this, 'post_type']);
+        add_action('init', [$this, 'taxonomies']);
     }
 
     public function post_type()
@@ -79,10 +78,39 @@ class ProjectsPostType implements IPostType
 
     public function taxonomies()
     {
+        $labels = [
+            'name' => esc_html__('Tags', 'genosha-api'),
+            'singular_name' => esc_html__('Tag', 'genosha-api'),
+        ];
+
+
+        $args = [
+            'label' => esc_html__('Tags', 'genosha-api'),
+            'labels' => $labels,
+            'public' => true,
+            'publicly_queryable' => true,
+            'hierarchical' => false,
+            'show_ui' => true,
+            'show_in_menu' => true,
+            'show_in_nav_menus' => true,
+            'query_var' => true,
+            'rewrite' => ['slug' => 'tags_projects', 'with_front' => true,],
+            'show_admin_column' => true,
+            'show_in_rest' => true,
+            'show_tagcloud' => true,
+            'rest_base' => 'tags_projects',
+            'rest_controller_class' => 'WP_REST_Terms_Controller',
+            'rest_namespace' => 'genosha/v3',
+            'show_in_quick_edit' => true,
+            'sort' => false,
+            'show_in_graphql' => false,
+        ];
+        register_taxonomy('tags_projects', ['projects'], $args);
     }
 
-    public function gutenber($use_gutenberg, $post){
-        if( $post->post_type === $this->post_type ) {
+    public function gutenber($use_gutenberg, $post)
+    {
+        if ($post->post_type === $this->post_type) {
             $use_gutenberg = false;
         }
         return $use_gutenberg;
