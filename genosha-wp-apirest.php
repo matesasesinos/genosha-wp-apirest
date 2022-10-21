@@ -50,7 +50,7 @@ class GenoshaApiRestInit
         //Initialize APP Passwords
         add_filter('wp_is_application_passwords_available', '__return_true');
         //Protect routes
-       // add_filter('rest_authentication_errors', [__CLASS__, 'protect_routes']);
+        add_filter('rest_authentication_errors', [__CLASS__, 'protect_routes']);
         //Load plugin classes
         self::load_classes();
     }
