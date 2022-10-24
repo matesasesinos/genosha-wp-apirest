@@ -70,7 +70,9 @@ class ProjectsPostType
             'query_var' => true,
             'menu_icon' => 'dashicons-art',
             'supports' => ['title'],
-            'show_in_graphql' => false,
+            'show_in_graphql' => true,
+            'graphql_single_name' => 'Proyecto',
+            'graphql_plural_name' => 'Proyectos'
         ];
 
         register_post_type('projects', $args);
@@ -103,7 +105,9 @@ class ProjectsPostType
             'rest_namespace' => 'genosha/v3',
             'show_in_quick_edit' => true,
             'sort' => false,
-            'show_in_graphql' => false,
+            'show_in_graphql' => true,
+            'graphql_single_name' => 'Tags_Proyecto',
+            'graphql_plural_name' => 'Tags_Proyectos'
         ];
         register_taxonomy('tags_projects', ['projects'], $args);
     }

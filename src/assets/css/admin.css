@@ -14,25 +14,36 @@
   display: none;
 }
 div#api-auth {
-    background: aliceblue;
-    padding: .5% 1.5%;
-    border-radius: 10px;
-    display: none;
+  background: aliceblue;
+  padding: 0.5% 1.5%;
+  border-radius: 10px;
+  display: none;
 }
-#api-key-generate{
-    font-weight: bold;
+#api-key-generate {
+  font-weight: bold;
 }
 .genosha-meta-fields {
   display: flex;
   flex-direction: column;
-  padding-top: .5%;
+  padding-top: 0.5%;
 }
-.genosha-meta-fields label{
+.genosha-meta-fields label {
   display: block;
-  padding-bottom: .5%;
+  padding-bottom: 0.5%;
   font-weight: bold;
 }
 .genosha-meta-upload {
   display: grid;
   grid-template-columns: 3fr 1fr;
+}
+.genosha-meta-fields.genosha-meta-tags {
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.genosha-meta-fields.genosha-meta-tags input {
+  flex-basis: 25%;
+}
+.genosha-meta-upload.genosha-meta-upload-2 {
+  grid-template-columns: 1fr 1fr;
 }
