@@ -1,6 +1,5 @@
 (function($){
     $(document).ready(function() {
-        console.log(btoa('apiRestGenoshav3:pyG6 9DM2 S0yx BPGy 4flq oiqX'))
         $('.api-help-title').on('click', function() {
             const content = $(this).parent().find('.api-help-content');
             content.toggle('fast');
