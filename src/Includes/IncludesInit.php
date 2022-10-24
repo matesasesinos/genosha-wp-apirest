@@ -3,6 +3,7 @@
 namespace Gen\Api\Includes;
 
 use Gen\Api\Includes\ProjectsPostType;
+use Gen\Api\Includes\ServicesPostType;
 
 class IncludesInit
 {
@@ -19,5 +20,6 @@ class IncludesInit
     public static function load_classes()
     {
         ProjectsPostType::init();
+        ServicesPostType::init();
     }
 }

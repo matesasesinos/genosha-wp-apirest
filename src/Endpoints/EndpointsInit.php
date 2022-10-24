@@ -3,6 +3,7 @@
 namespace Gen\Api\Endpoints;
 
 use Gen\Api\Endpoints\Projects;
+use Gen\Api\Endpoints\Services;
 
 class EndpointsInit
 {
@@ -19,6 +20,7 @@ class EndpointsInit
     public static function load_classes()
     {
         Projects::init();
+        Services::init();
     }
 
     public function endpoints_permissions()
