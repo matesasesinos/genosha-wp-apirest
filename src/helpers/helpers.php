@@ -32,3 +32,33 @@ if (!function_exists('api_get_enviroment')) {
         return api_get_options()['enviroment'];
     }
 }
+
+if (!function_exists('genosha_team_query')) {
+    function genosha_team_query() {
+        $args = [
+            'post_type' => 'team',
+            'numberposts' => -1
+        ];
+
+        $posts = get_posts($args);
+
+        if(!$posts) {
+            return new \WP_Error('team-empty', 'No hay miembros de equipo');
+        }
+        $teams = [];
+        foreach($posts as $team) {
+            $areas = get_the_terms( $team->ID, 'team_area' );
+            $data = [
+                'ID' => $team->ID,
+                'name' => $team->post_title,
+                'bio' => $team->post_content,
+                'image' => get_the_post_thumbnail_url( $team->ID ),
+                'areas' =>  join(', ', wp_list_pluck($areas, 'name')),
+            ];
+
+            array_push($teams,$data);
+        }
+
+        return $teams;
+    }
+}
