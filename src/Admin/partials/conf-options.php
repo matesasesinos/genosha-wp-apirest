@@ -7,7 +7,7 @@
                 <tr>
                     <th>Ambiente</th>
                     <td>
-                        <select name="genosha-api-enviroment">
+                        <select name="genosha-api-enviroment" required>
                             <option value="dev" <?php function_exists('api_get_enviroment') && api_get_enviroment() ? selected('dev',api_get_enviroment(), true) : '' ?> >Desarrollo</option>
                             <option value="prod" <?php function_exists('api_get_enviroment') && api_get_enviroment() ? selected('prod',api_get_enviroment(), true) : '' ?>>Producción</option>
                         </select>

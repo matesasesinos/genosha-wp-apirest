@@ -14,7 +14,7 @@
         <h2 class="api-help-title">2 - Contraseña de Aplicación (Conexión a API)</h2>
         <div class="api-help-content">
             <p>Para conectarse a la API se necesita un usuario y un password de aplicación ya que estos datos deben enviarse en la cabecera de la petición.</p>
-            <p>El rol del usuario debe ser <strong>Administrador</strong> para desarrollo y <strong>Subscritor</strong> para producción.</p>
+            <p>Los tipos de roles usuario admitidos son <strong>administrator</strong> y <strong>subscriber</strong>, todos los demas roles estan bloqueados para el acceso a la API, se recomienda usar <strong>subscriber</strong> que es un usuario solo con permisos GET.</p>
             <p>Para crear un usuario debe dirigirse a <strong>Usuarios</strong> > <strong>Añadir nuevo</strong></p>
             <p>
                 <img src="<?php echo GENOSHA_ADMIN_ASSETS_IMAGES ?>/help-users-new.png" alt="">

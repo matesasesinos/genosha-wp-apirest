@@ -36,7 +36,7 @@ class Projects extends EndpointsInit
         $args = [
             'post_type' => 'projects',
             'post_status' => 'publish',
-            'numberposts' => -1,
+            'numberposts' => 3,
             'lang' => $lang
         ];
 
