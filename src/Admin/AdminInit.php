@@ -5,6 +5,7 @@ namespace Gen\Api\Admin;
 use Gen\Api\Admin\ConfOptions;
 use Gen\Api\Admin\HelpOptions;
 use Gen\Api\Admin\Metaboxes;
+use Gen\Api\Admin\Skybox;
 
 class AdminInit
 {
@@ -30,5 +31,6 @@ class AdminInit
         ConfOptions::init();
         HelpOptions::init();
         Metaboxes::init();
+        Skybox::init();
     }
 }

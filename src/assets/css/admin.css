@@ -47,3 +47,17 @@ div#api-auth {
 .genosha-meta-upload.genosha-meta-upload-2 {
   grid-template-columns: 1fr 1fr;
 }
+div#skybox-messages p.error {
+  background: red;
+  display: inline-block;
+  padding: .5% 1%;
+  border-radius: 5px;
+  color: white;
+}
+div#skybox-messages p.success {
+  background: green;
+  display: inline-block;
+  padding: .5% 1%;
+  border-radius: 5px;
+  color: white;
+}
