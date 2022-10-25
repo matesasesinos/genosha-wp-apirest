@@ -4,6 +4,7 @@ namespace Gen\Api\Endpoints;
 
 use Gen\Api\Endpoints\Projects;
 use Gen\Api\Endpoints\Services;
+use Gen\Api\Endpoints\Skybox;
 
 class EndpointsInit
 {
@@ -21,6 +22,7 @@ class EndpointsInit
     {
         Projects::init();
         Services::init();
+        Skybox::init();
     }
 
     public function endpoints_permissions()
