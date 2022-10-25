@@ -19,6 +19,7 @@ class ServicesPostType
     public function __construct()
     {
         add_action('init', [$this, 'post_type']);
+        add_filter('use_block_editor_for_post_type', [$this,'gutenberg'], 10, 2);
     }
 
     public function post_type()
@@ -60,9 +61,9 @@ class ServicesPostType
         register_post_type('services', $args);
     }
     
-    public function gutenber($use_gutenberg, $post)
+    public function gutenberg($use_gutenberg, $post_type)
     {
-        if ($post->post_type === $this->post_type) {
+        if ($post_type === $this->post_type) {
             $use_gutenberg = false;
         }
         return $use_gutenberg;

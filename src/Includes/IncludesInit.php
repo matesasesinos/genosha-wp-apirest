@@ -4,6 +4,7 @@ namespace Gen\Api\Includes;
 
 use Gen\Api\Includes\ProjectsPostType;
 use Gen\Api\Includes\ServicesPostType;
+use Gen\Api\Includes\TeamPostType;
 
 class IncludesInit
 {
@@ -21,5 +22,6 @@ class IncludesInit
     {
         ProjectsPostType::init();
         ServicesPostType::init();
+        TeamPostType::init();
     }
 }
