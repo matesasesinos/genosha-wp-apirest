@@ -27,15 +27,26 @@ define('GENOSHA_API_VERSION', '3.0.1');
 define('GENOSHA_API_NAMESPACE', 'wp/v2');
 define('API_GET', \WP_REST_Server::READABLE);
 define('GENOSHA_API_ENVIROMENT', function_exists('api_get_enviroment') && api_get_enviroment() ? api_get_enviroment() : 'dev');
-define('GENOSHA_ADMIN_ASSETS_IMAGES', plugin_dir_url(__FILE__) . '/src/assets/images');
-define('GENOSHA_ADMIN_ASSETS_CSS', plugin_dir_url(__FILE__) . '/src/assets/css');
-define('GENOSHA_ADMIN_ASSETS_JS', plugin_dir_url(__FILE__) . '/src/assets/js');
+define('GENOSHA_ADMIN_ASSETS_IMAGES', plugin_dir_url(__FILE__) . 'src/assets/images');
+define('GENOSHA_ADMIN_ASSETS_CSS', plugin_dir_url(__FILE__) . 'src/assets/css');
+define('GENOSHA_ADMIN_ASSETS_JS', plugin_dir_url(__FILE__) . 'src/assets/js');
+define('GENOSHA_PUBLIC_ASSETS_IMAGES', plugin_dir_url(__FILE__) . 'public/images');
 
 use Gen\Api\TestApi;
 use Gen\Api\Includes\IncludesInit;
 use Gen\Api\Endpoints\EndpointsInit;
 use Gen\Api\Admin\AdminInit;
 use Gen\Api\Utils\Utils;
+
+register_activation_hook(__FILE__, function () {
+    update_option('genosha_contact_email', get_option('admin_email'));
+    update_option('genosha_social_networks', maybe_serialize(genosha_fill_networks()), true);
+});
+
+register_deactivation_hook(__FILE__, function () {
+    delete_option('genosha_contact_email');
+    delete_option('genosha_social_networks');
+});
 
 class GenoshaApiRestInit
 {
