@@ -189,8 +189,8 @@ if (!function_exists('genosha_create_cookies_pages')) {
             pll_save_post_translations($create_es,$create_en);
 
             $cookies = [
-                'cookies_text_en' => 'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.',
-                'cookies_text_es' => 'Usamos cookies para mejorar su experiencia de navegación, mostrar anuncios o contenido personalizados y analizar nuestro tráfico. Al hacer clic en "Aceptar todo", usted acepta nuestro uso de cookies.',
+                'cookies_text_en' => stripslashes_deep('We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.'),
+                'cookies_text_es' => stripslashes_deep('Usamos cookies para mejorar su experiencia de navegación, mostrar anuncios o contenido personalizados y analizar nuestro tráfico. Al hacer clic en "Aceptar todo", usted acepta nuestro uso de cookies.'),
                 'cookies_page_en' => $create_en,
                 'cookies_page_es' => $create_es
             ];

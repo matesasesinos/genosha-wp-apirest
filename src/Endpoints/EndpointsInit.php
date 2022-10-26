@@ -6,6 +6,7 @@ use Gen\Api\Endpoints\Projects;
 use Gen\Api\Endpoints\Services;
 use Gen\Api\Endpoints\Skybox;
 use Gen\Api\Endpoints\Contact;
+use Gen\Api\Endpoints\PageInfo;
 
 class EndpointsInit
 {
@@ -25,6 +26,7 @@ class EndpointsInit
         Services::init();
         Skybox::init();
         Contact::init();
+        PageInfo::init();
     }
 
     public function endpoints_permissions()

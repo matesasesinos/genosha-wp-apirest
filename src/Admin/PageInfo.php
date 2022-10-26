@@ -34,8 +34,8 @@ class PageInfo
     {
         if(isset($_POST['genosha-cookies-save'])) {
             $cookies = [
-                'cookies_text_en' => $_POST['genosha_cookies_text_en'],
-                'cookies_text_es' => $_POST['genosha_cookies_text_es'],
+                'cookies_text_en' => stripslashes_deep($_POST['genosha_cookies_text_en']),
+                'cookies_text_es' => stripslashes_deep($_POST['genosha_cookies_text_es']),
                 'cookies_page_en' => $_POST['genosha_cookies_page_en'],
                 'cookies_page_es' => $_POST['genosha_cookies_page_es'],
             ];
