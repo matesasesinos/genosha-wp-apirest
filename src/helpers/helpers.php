@@ -117,3 +117,87 @@ if (!function_exists('genosha_fill_networks')) {
         return $data;
     }
 }
+
+if (!function_exists('genosha_get_pages')) {
+    function genosha_get_pages($lang)
+    {
+        $args = [
+            'post_type' => 'page',
+            'numberposts' => -1,
+            'lang' => $lang
+        ];
+
+        $posts = get_posts($args);
+
+        if(!$posts) {
+            return false;
+        }
+
+        $pages = [];
+        foreach($posts as $pg) {
+            $page = [
+                'ID' => $pg->ID,
+                'title' => $pg->post_title
+            ];
+            array_push($pages,$page);
+        }
+        return $pages;
+    }
+}
+
+if (!function_exists('genosha_create_post')) {
+    function genosha_create_post($data)
+    {
+        $post = wp_insert_post([
+            'post_status' => 'publish',
+            'post_author' => 1,
+            'post_type' => 'page',
+            'post_title' => sanitize_text_field($data['title']),
+            'post_name' => sanitize_title($data['title']),
+            'post_content' => sanitize_text_field($data['content'])
+        ]);
+
+        if(!$post) {
+            return false;
+        }
+        //https://polylang.pro/doc/function-reference/
+        return $post;
+    }
+}
+
+if (!function_exists('genosha_create_cookies_pages')) {
+    function genosha_create_cookies_options()
+    {
+        $title_en = 'Cookies policy';
+        $title_es = 'Política de cookies';
+        $content = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim eos molestiae est? Asperiores quas omnis eius amet nam itaque voluptatibus. Quidem, deserunt! Odit nobis ducimus quibusdam qui fugit eligendi quis sequi cupiditate tempore, maxime ullam dolorem, magnam consequatur inventore velit, expedita fugiat repellat necessitatibus dicta! Ab maiores voluptates repellat dolore.';
+
+        $create_es = genosha_create_post([
+            'title' => $title_es,
+            'content' => $content
+        ]);
+        
+        if($create_es) {
+            pll_set_post_language($create_es,'es');
+
+            $create_en = genosha_create_post([
+                'title' => $title_en,
+                'content' => $content
+            ]);
+
+            pll_set_post_language($create_en,'en');
+            pll_save_post_translations($create_es,$create_en);
+
+            $cookies = [
+                'cookies_text_en' => 'We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.',
+                'cookies_text_es' => 'Usamos cookies para mejorar su experiencia de navegación, mostrar anuncios o contenido personalizados y analizar nuestro tráfico. Al hacer clic en "Aceptar todo", usted acepta nuestro uso de cookies.',
+                'cookies_page_en' => $create_en,
+                'cookies_page_es' => $create_es
+            ];
+
+            return $cookies;
+        }
+
+        die('Error al crear la política de cookies.');
+    }
+}

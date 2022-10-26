@@ -7,6 +7,7 @@ use Gen\Api\Admin\HelpOptions;
 use Gen\Api\Admin\Metaboxes;
 use Gen\Api\Admin\Skybox;
 use Gen\Api\Admin\Contact;
+use Gen\Api\Admin\PageInfo;
 
 class AdminInit
 {
@@ -34,5 +35,6 @@ class AdminInit
         Metaboxes::init();
         Skybox::init();
         Contact::init();
+        PageInfo::init();
     }
 }
