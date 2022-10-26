@@ -30,7 +30,7 @@
                         <?php endif; ?>
                         <hr>
                         <strong>Español</strong><br />
-                        <?php if(genosha_get_pages('en')): ?>
+                        <?php if(genosha_get_pages('es')): ?>
                             <select name="genosha_cookies_page_es" class="regular-text">
                                 <option value="">-- seleccionar --</option>
                                 <?php foreach(genosha_get_pages('es') as $page): ?>
