@@ -41,11 +41,13 @@ use Gen\Api\Utils\Utils;
 register_activation_hook(__FILE__, function () {
     update_option('genosha_contact_email', get_option('admin_email'));
     update_option('genosha_social_networks', maybe_serialize(genosha_fill_networks()), true);
+    update_option('genosha_cookies_policy', maybe_serialize(genosha_create_cookies_options()), true);
 });
 
 register_deactivation_hook(__FILE__, function () {
     delete_option('genosha_contact_email');
     delete_option('genosha_social_networks');
+    delete_option('genosha_cookies_policy');
 });
 
 class GenoshaApiRestInit
