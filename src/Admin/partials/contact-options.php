@@ -18,7 +18,7 @@
     <hr>
     <h1>Redes sociales</h1>
     <?php $networks = maybe_unserialize( get_option('genosha_social_networks') ); ?>
-    <form method="post" enctype="multipart/form-data">
+     <form method="post" enctype="multipart/form-data">
         <div class="genosha-networks-form">
             <div class="genosha-meta-fields">
                 <strong>Medium <img style="max-width: 24px;" src="<?php echo $networks['medium']['image']?>" alt=""></strong>
