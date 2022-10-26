@@ -6,6 +6,7 @@ use Gen\Api\Admin\ConfOptions;
 use Gen\Api\Admin\HelpOptions;
 use Gen\Api\Admin\Metaboxes;
 use Gen\Api\Admin\Skybox;
+use Gen\Api\Admin\Contact;
 
 class AdminInit
 {
@@ -32,5 +33,6 @@ class AdminInit
         HelpOptions::init();
         Metaboxes::init();
         Skybox::init();
+        Contact::init();
     }
 }

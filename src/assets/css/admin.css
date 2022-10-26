@@ -61,3 +61,17 @@ div#skybox-messages p.success {
   border-radius: 5px;
   color: white;
 }
+.genosha-networks-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:10px;
+}
+.genosha-networks-form .genosha-meta-fields {
+  margin-bottom: 4%;
+  padding-bottom: 2%;
+  border-bottom: 1px solid lightgray;
+}
+.genosha-networks-form .genosha-meta-fields input[type=file]{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
