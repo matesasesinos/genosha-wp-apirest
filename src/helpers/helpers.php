@@ -178,15 +178,10 @@ if (!function_exists('genosha_create_cookies_pages')) {
         ]);
         
         if($create_es) {
-            pll_set_post_language($create_es,'es');
-
             $create_en = genosha_create_post([
                 'title' => $title_en,
                 'content' => $content
             ]);
-
-            pll_set_post_language($create_en,'en');
-            pll_save_post_translations($create_es,$create_en);
 
             $cookies = [
                 'cookies_text_en' => stripslashes_deep('We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.'),
