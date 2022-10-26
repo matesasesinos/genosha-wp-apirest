@@ -58,13 +58,14 @@ class Skybox extends EndpointsInit
         if (!$skybox_card) {
             return wp_send_json_error('Skybox Card vacía!', 404);
         }
-
+        $areas = get_the_terms( $skybox_card['author'], 'team_area' );
         $card = [
             'title' => $lang == 'en' ? $skybox_card['title_en'] : $skybox_card['title_es'],
             'image' => $skybox_card['image'],
             'author_name' => $skybox_card['author_name'],
             'author_img' => $skybox_card['author_img'],
-            'author_text' => $lang == 'en' ? $skybox_card['author_text_en'] : $skybox_card['author_text_es']
+            'author_text' => $lang == 'en' ? $skybox_card['author_text_en'] : $skybox_card['author_text_es'],
+            'author_position' => join(', ', wp_list_pluck($areas, 'name')),
         ];
 
         return wp_send_json_success($card);
