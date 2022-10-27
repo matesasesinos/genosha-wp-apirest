@@ -12,10 +12,18 @@ class PostRepository
     public static function get_all_posts(array $args, string $terms_key, string $taxonomy, string $meta)
     {
         $posts = [];
+
         foreach (get_posts($args) as $post) {
             $data = [
                 'ID' => $post->ID,
                 'title' => $post->post_title,
+                'meta_desc' => get_post_meta($post->ID, '_yoast_wpseo_metadesc', true),
+                'og_title' => get_post_meta($post->ID, '_yoast_wpseo_opengraph-title', true),
+                'og_description' => get_post_meta($post->ID, '_yoast_wpseo_opengraph-description', true),
+                'og_image' => get_post_meta($post->ID, '_yoast_wpseo_opengraph-image', true),
+                'og_tw_title' => get_post_meta($post->ID, '_yoast_wpseo_twitter-title', true),
+                'og_tw_description' => get_post_meta($post->ID, '_yoast_wpseo_twitter-description', true),
+                'og_tw_image' => get_post_meta($post->ID, '_yoast_wpseo_twitter-image', true),
             ];
             if($post->post_content != '') {
                 $data['content'] = $post->post_content;
