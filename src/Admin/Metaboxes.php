@@ -44,11 +44,11 @@ class Metaboxes
 
     public function projects_fields($post)
     {
-        $project_content = is_serialized(get_post_meta($post->ID, '_genosha_project_content', true)) ? maybe_unserialize(get_post_meta($post->ID, '_genosha_project_content', true)) : get_post_meta($post->ID, '_genosha_project_content', true);
+        $project_content = maybe_unserialize( base64_decode(get_post_meta($post->ID, '_genosha_project_content', true)) );
 
         api_template_part(plugin_dir_path(__FILE__) . '/partials/metas/meta-projects', [
             'subtitle' =>  $project_content && isset($project_content['subtitle']) != '' ? $project_content['subtitle'] : '',
-            'description' => $project_content && isset($project_content['description']) != '' ? $project_content['description'] : '',
+            'description' => $project_content && isset($project_content['description']) != '' ? stripslashes($project_content['description']) : '',
             'link' => $project_content && isset($project_content['link']) != '' ? $project_content['link'] : '',
             'file_url' => $project_content && isset($project_content['file_url']) != '' ? $project_content['file_url'] : '',
             'file_name' => $project_content && isset($project_content['file_name']) != '' ? $project_content['file_name'] : '',
@@ -69,9 +69,11 @@ class Metaboxes
             return false;
         }
 
+
         $subtitle = sanitize_text_field($_POST['project-subtitle']);
-        $description = sanitize_textarea_field($_POST['project-description']);
+        $description = sanitize_text_field($_POST['project-description']);
         $link = sanitize_url($_POST['project-link']);
+        
 
         $data = [
             'subtitle' => $subtitle,
@@ -79,7 +81,7 @@ class Metaboxes
             'link' => $link
         ];
 
-        if ($_FILES['project-file']['name'] != '') {
+         if ($_FILES['project-file']['name'] != '') {
             $media = Media::upload_file($_FILES['project-file'], []);
             if (is_wp_error($media)) {
                 return $media->get_error_message();
@@ -93,18 +95,20 @@ class Metaboxes
 
         $data['file_url'] = $file_url;
         $data['file_name'] = $file_name;
-        update_post_meta($post_id, '_genosha_project_content', maybe_serialize($data));
+        
+    
+        update_post_meta($post_id, '_genosha_project_content', base64_encode(maybe_serialize( $data )));
     }
 
     public function services_fields($post)
     {
-        $service_content = is_serialized(get_post_meta($post->ID, '_genosha_service_content', true)) ? maybe_unserialize(get_post_meta($post->ID, '_genosha_service_content', true)) : get_post_meta($post->ID, '_genosha_service_content', true);
+        $service_content =  maybe_unserialize(base64_decode(get_post_meta($post->ID, '_genosha_service_content', true)));
         api_template_part(plugin_dir_path(__FILE__) . '/partials/metas/meta-services', [
             'data' => $service_content ? $service_content : '',
-            'tag1' => $service_content && isset($service_content['tag1']) != '' ? $service_content['tag1'] : '',
-            'tag2' => $service_content && isset($service_content['tag2']) != '' ? $service_content['tag2'] : '',
-            'tag3' => $service_content && isset($service_content['tag3']) != '' ? $service_content['tag3'] : '',
-            'tag4' => $service_content && isset($service_content['tag4']) != '' ? $service_content['tag4'] : '',
+            'tag1' => $service_content && isset($service_content['tag1']) != '' ? stripslashes($service_content['tag1']) : '',
+            'tag2' => $service_content && isset($service_content['tag2']) != '' ? stripslashes($service_content['tag2']) : '',
+            'tag3' => $service_content && isset($service_content['tag3']) != '' ? stripslashes($service_content['tag3']) : '',
+            'tag4' => $service_content && isset($service_content['tag4']) != '' ? stripslashes($service_content['tag4']) : '',
             'video1_url' => $service_content && isset($service_content['video1_url']) != '' ? $service_content['video1_url'] : '',
             'video2_url' => $service_content && isset($service_content['video2_url']) != '' ? $service_content['video2_url'] : '',
         ]);
@@ -161,6 +165,6 @@ class Metaboxes
         $data['video1_url'] = $video1_url;
         $data['video2_url'] = $video2_url;
 
-        update_post_meta($post_id, '_genosha_service_content', maybe_serialize($data));
+        update_post_meta($post_id, '_genosha_service_content', base64_encode(maybe_serialize($data)));
     }
 }
