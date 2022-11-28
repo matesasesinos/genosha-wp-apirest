@@ -12,12 +12,16 @@
         <div class="video-mp4">
             <?php if ($video1_url != '') : ?>
                 <a href="<?php echo $video1_url ?>" class="button">Archivo cargado (ver)</a>
+            <?php else : ?>
+                <p>No hay archivo cargado</p>
             <?php endif; ?>
             <input type="file" name="services-file1" accept="video/mp4" placeholder="Solo archivos MP4">
         </div>
         <div class="video-mp4">
             <?php if ($video2_url != '') : ?>
                 <a href="<?php echo $video2_url ?>" class="button">Archivo cargado (ver)</a>
+            <?php else : ?>
+                <p>No hay archivo cargado</p>
             <?php endif; ?>
             <input type="file" name="services-file2" accept="video/mp4" placeholder="Solo archivos MP4">
         </div>
