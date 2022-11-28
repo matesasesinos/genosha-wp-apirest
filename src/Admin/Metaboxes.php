@@ -47,7 +47,7 @@ class Metaboxes
         $project_content = maybe_unserialize( base64_decode(get_post_meta($post->ID, '_genosha_project_content', true)) );
 
         api_template_part(plugin_dir_path(__FILE__) . '/partials/metas/meta-projects', [
-            'subtitle' =>  $project_content && isset($project_content['subtitle']) != '' ? $project_content['subtitle'] : '',
+            'subtitle' =>  $project_content && isset($project_content['subtitle']) != '' ? stripslashes($project_content['subtitle']) : '',
             'description' => $project_content && isset($project_content['description']) != '' ? stripslashes($project_content['description']) : '',
             'link' => $project_content && isset($project_content['link']) != '' ? $project_content['link'] : '',
             'file_url' => $project_content && isset($project_content['file_url']) != '' ? $project_content['file_url'] : '',
