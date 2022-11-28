@@ -45,7 +45,7 @@ class Services extends EndpointsInit
         if (!$projects) {
             return wp_send_json_error('No services found', 404);
         }
-
+        
         return wp_send_json_success($projects);
     }
 }

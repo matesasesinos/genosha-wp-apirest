@@ -62,6 +62,6 @@ class PostRepository
 
     public static function get_postmeta(int $post_id, string $meta)
     {
-        return is_serialized( get_post_meta($post_id,$meta,true) ) ? maybe_unserialize( get_post_meta($post_id,$meta,true) ) : get_post_meta($post_id,$meta,true);
+        return maybe_unserialize( base64_decode(get_post_meta($post_id,$meta,true)) );
     }
 }

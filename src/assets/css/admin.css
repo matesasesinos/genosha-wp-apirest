@@ -75,3 +75,12 @@ div#skybox-messages p.success {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+.video-mp4{
+  display: flex;
+  flex-direction: column;
+}
+.video-mp4 .button {
+  width: auto;
+  max-width: 30%;
+  text-align: center;
+}
