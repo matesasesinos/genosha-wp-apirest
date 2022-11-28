@@ -69,9 +69,11 @@ class Metaboxes
             return false;
         }
 
+
         $subtitle = sanitize_text_field($_POST['project-subtitle']);
         $description = sanitize_textarea_field($_POST['project-description']);
         $link = sanitize_url($_POST['project-link']);
+        
 
         $data = [
             'subtitle' => $subtitle,
@@ -79,7 +81,7 @@ class Metaboxes
             'link' => $link
         ];
 
-        if ($_FILES['project-file']['name'] != '') {
+         if ($_FILES['project-file']['name'] != '') {
             $media = Media::upload_file($_FILES['project-file'], []);
             if (is_wp_error($media)) {
                 return $media->get_error_message();
@@ -94,6 +96,7 @@ class Metaboxes
         $data['file_url'] = $file_url;
         $data['file_name'] = $file_name;
         update_post_meta($post_id, '_genosha_project_content', maybe_serialize($data));
+
     }
 
     public function services_fields($post)
