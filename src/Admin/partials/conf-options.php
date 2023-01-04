@@ -16,6 +16,12 @@
                         </p>
                     </td>
                 </tr>
+                <tr>
+                    <th>Origen (CORS)</th>
+                    <td>
+                        <input type="text" name="genosha-api-origin" value="<?php echo get_option('genosha-api-origin')?>" class="regular-text">
+                    </td>
+                </tr>
             </tbody>
         </table>
         <p class="submit">
