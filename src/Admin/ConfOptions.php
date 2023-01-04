@@ -16,28 +16,36 @@ class ConfOptions
 
     public function __construct()
     {
-        add_action('admin_menu', [$this,'menu']);
+        add_action('admin_menu', [$this, 'menu']);
         add_action('admin_init', [$this, 'save_options']);
     }
 
     public function menu()
     {
-        add_menu_page('Genosha', 'Genosha', 'manage_options', 'genosha-api-menu', [$this, 'callback'], GENOSHA_ADMIN_ASSETS_IMAGES.'/genosha-icon.png', 30);
+        add_menu_page('Genosha', 'Genosha', 'manage_options', 'genosha-api-menu', [$this, 'callback'], GENOSHA_ADMIN_ASSETS_IMAGES . '/genosha-icon.png', 30);
     }
 
     public function callback()
     {
-        api_template_part(plugin_dir_path( __FILE__ ).'/partials/conf-options');
+        api_template_part(plugin_dir_path(__FILE__) . '/partials/conf-options');
     }
 
     public function save_options()
     {
-        if(isset($_POST['genosha-api-save-options'])) {
+        if (isset($_POST['genosha-api-save-options'])) {
             $options = [
                 'enviroment' => isset($_POST['genosha-api-enviroment']) ? $_POST['genosha-api-enviroment'] : 'dev'
             ];
 
-            update_option('_genosha_api_options', maybe_serialize( $options ), true);
+            update_option('_genosha_api_options', maybe_serialize($options), true);
+        }
+
+        if (isset($_POST['genosha-api-origin'])) {
+            if ($_POST['genosha-api-origin'] == '') {
+                update_option('genosha-api-origin', "*", true);
+            } else {
+                update_option('genosha-api-origin', $_POST['genosha-api-origin'], true);
+            }
         }
     }
 }
