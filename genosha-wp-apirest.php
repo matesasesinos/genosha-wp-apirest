@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Genosha API REST
- * Version: 1.0.1
+ * Version: 1.0.4
  * Author: Juan Iriart
  * Description: Genosha plugin for API REST v3
  * Text Domain: genosha-api
@@ -10,6 +10,8 @@
 require plugin_dir_path(__FILE__) . '/vendor/autoload.php';
 
 //Check if polylang exists
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
 
 if (!in_array('polylang/polylang.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     function pl_admin_notice__error()
@@ -23,7 +25,7 @@ if (!in_array('polylang/polylang.php', apply_filters('active_plugins', get_optio
     add_action('admin_notices', 'pl_admin_notice__error');
 }
 
-define('GENOSHA_API_VERSION', '3.0.1');
+define('GENOSHA_API_VERSION', '3.0.4');
 define('GENOSHA_API_NAMESPACE', 'wp/v2');
 define('API_GET', \WP_REST_Server::READABLE);
 define('GENOSHA_API_ENVIROMENT', function_exists('api_get_enviroment') && api_get_enviroment() ? api_get_enviroment() : 'dev');

@@ -15,7 +15,7 @@ class IncludesInit
             return;
         self::$init = true;
 
-        add_filter('pll_copy_post_metas', [__CLASS__, 'copy_post_metas']);
+        //add_filter('pll_copy_post_metas', [__CLASS__, 'copy_post_metas']);
 
         self::load_classes();
     }
